@@ -5,24 +5,28 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 /**
- * Base class for integration tests. Starts a shared PostgreSQL container
+ * Base class for integration tests. Starts a single shared PostgreSQL container
  * via Testcontainers and injects datasource properties into the Spring context.
+ *
+ * <p>Uses the singleton container pattern so the same container is reused across
+ * all test classes, keeping the test suite fast.</p>
  */
 @SpringBootTest
 @ActiveProfiles("test")
-@Testcontainers
 public abstract class AbstractIntegrationTest {
 
-  @Container
+  @SuppressWarnings("resource")
   static final PostgreSQLContainer<?> postgres =
       new PostgreSQLContainer<>("postgres:17-alpine")
           .withDatabaseName("template_test")
           .withUsername("test")
           .withPassword("test");
+
+  static {
+    postgres.start();
+  }
 
   @DynamicPropertySource
   static void configureDataSource(DynamicPropertyRegistry registry) {

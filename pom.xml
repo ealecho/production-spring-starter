@@ -25,7 +25,7 @@
 
         <!-- Explicit dependency versions -->
         <springdoc.version>3.0.0</springdoc.version>
-        <flyway.version>10.18.1</flyway.version>
+
         <lombok.version>1.18.44</lombok.version>
     </properties>
 
@@ -62,14 +62,16 @@
 
         <!-- Flyway -->
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-flyway</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-database-postgresql</artifactId>
-            <version>${flyway.version}</version>
         </dependency>
 
         <!-- SpringDoc (Boot 4 compatible) -->
