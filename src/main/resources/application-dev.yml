@@ -3,7 +3,7 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3306/template_dev}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/template_dev}
   jpa:
     hibernate:
       ddl-auto: update

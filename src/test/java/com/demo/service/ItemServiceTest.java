@@ -1,19 +1,16 @@
 package com.demo.service;
 
+import com.demo.AbstractIntegrationTest;
 import com.demo.dto.CreateItemRequest;
 import com.demo.entity.Item;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-@ActiveProfiles("test")
 @Transactional
-class ItemServiceTest {
+class ItemServiceTest extends AbstractIntegrationTest {
 
   @Autowired
   private ItemService itemService;

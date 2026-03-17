@@ -18,16 +18,17 @@ Reusable Spring Boot 4.0.3 + Java 25 starter for building production-ready REST 
 
 - JDK 25+
 - Maven (wrapper included)
-- MySQL 8+ (dev/prod) or H2 (tests)
+- PostgreSQL 17+ (dev/prod)
+- Docker (for tests via Testcontainers)
 
 ## Quick Start (Dev)
 
-1. Configure a local MySQL database:
+1. Configure a local PostgreSQL database:
 
 ```
-DB_URL=jdbc:mysql://localhost:3306/template_dev
-DB_USERNAME=root
-DB_PASSWORD=root!
+DB_URL=jdbc:postgresql://localhost:5432/template_dev
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
 ```
 
 2. Run:
@@ -51,7 +52,7 @@ Or:
 ## Profiles
 
 - `dev`: local development defaults, SQL logging enabled
-- `test`: H2 in-memory, Flyway disabled
+- `test`: PostgreSQL via Testcontainers, Flyway enabled
 - `prod`: production defaults, security enabled
 
 Activate a profile:
@@ -227,9 +228,15 @@ src/
 
 ## Tests
 
+Tests use [Testcontainers](https://testcontainers.com/) to spin up a real PostgreSQL instance in Docker. This ensures tests run against the same database engine as production -- no H2 dialect mismatches.
+
+**Requirements:** Docker must be running.
+
 ```bash
 ./mvnw test
 ```
+
+All integration tests extend `AbstractIntegrationTest`, which starts a shared PostgreSQL 17 container and injects the datasource properties via `@DynamicPropertySource`. Flyway migrations run automatically against the container.
 
 ## Build and Run
 
