@@ -1,10 +1,10 @@
 # Spring Boot 4 API Template
 
-Reusable Spring Boot 4.0.3 + Java 21 starter for building production-ready REST APIs. Includes a clean package structure, consistent response format, profiles, security baseline, OpenAPI docs, and sample CRUD.
+Reusable Spring Boot 4.0.3 + Java 25 starter for building production-ready REST APIs. Includes a clean package structure, consistent response format, profiles, security baseline, OpenAPI docs, and sample CRUD.
 
 ## Features
 
-- Spring Boot 4.0.3, Java 21
+- Spring Boot 4.0.3, Java 25
 - Standard layered architecture: controller -> service -> repository
 - Consistent API response format
 - Validation + global exception handling
@@ -16,8 +16,8 @@ Reusable Spring Boot 4.0.3 + Java 21 starter for building production-ready REST 
 
 ## Requirements
 
-- JDK 21+
-- Gradle (wrapper included)
+- JDK 25+
+- Maven (wrapper included)
 - MySQL 8+ (dev/prod) or H2 (tests)
 
 ## Quick Start (Dev)
@@ -45,7 +45,7 @@ Windows:
 Or:
 
 ```bash
-./gradlew bootRun
+./mvnw spring-boot:run
 ```
 
 ## Profiles
@@ -57,7 +57,7 @@ Or:
 Activate a profile:
 
 ```bash
-SPRING_PROFILES_ACTIVE=dev ./gradlew bootRun
+SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run
 ```
 
 ## Base URL
@@ -228,14 +228,14 @@ src/
 ## Tests
 
 ```bash
-./gradlew test
+./mvnw test
 ```
 
 ## Build and Run
 
 ```bash
-./gradlew clean build
-java -jar build/libs/template-api.jar
+./mvnw clean package
+java -jar target/template-api.jar
 ```
 
 Docker:

@@ -1,10 +1,6 @@
 logs/
 *.log
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+target/
 
 ### STS ###
 .apt_generated
@@ -32,7 +28,9 @@ out/
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
 
 ### VS Code ###
 .vscode/
+
+### Maven ###
+!.mvn/wrapper/maven-wrapper.jar

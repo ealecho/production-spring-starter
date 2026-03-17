@@ -1,11 +1,9 @@
 # Runtime image
-FROM eclipse-temurin:21-jre-jammy
-
-LABEL authors="Manish"
+FROM eclipse-temurin:25-jre-jammy
 
 WORKDIR /app
 
-ARG JAR_FILE=build/libs/template-api.jar
+ARG JAR_FILE=target/template-api.jar
 COPY ${JAR_FILE} app.jar
 
 EXPOSE 8080
